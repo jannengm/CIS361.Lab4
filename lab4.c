@@ -2,6 +2,7 @@
 #include <string.h>
 
 #define LEN 4
+#define MAX_STR_LEN 4096
 
 char* strnsub (char *p, int n);
 
@@ -20,7 +21,7 @@ int main()
 
 		while ( *p2 != '\0' )
 		{
-			if ( strncmp(p1, p2, LEN) == 0 )		// use strncmp() to compare
+			if ( strncmp(p1, p2, LEN) == 0 )	// use strncmp() to compare
 				goto done;
 
 			// advance p2 to the next position
@@ -39,9 +40,16 @@ done:	printf ("the first substring: %s\n", strnsub(p1, LEN));
 
 
 // returns a string with the first n characters of string p
-// PROBLEM: this is destructive to passed string p
 char* strnsub (char *p, int n)
 {
-	*(p + n) = '\0';
-	return p;
+	//*(p + n) = '\0';
+	//return p;
+	static char str[MAX_STR_LEN];
+	int i;
+	for(i = 0; i < strlen(p) && i < n; ++i){
+		str[i] = p[i];
+	}
+	str[i] = '\0';
+	
+	return str;
 }
