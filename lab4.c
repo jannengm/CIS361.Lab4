@@ -39,7 +39,7 @@ done:	printf ("the first substring: %s\n", strnsub(p1, LEN));
 
 
 // returns a string with the first n characters of string p
-
+// PROBLEM: this is destructive to passed string p
 char* strnsub (char *p, int n)
 {
 	*(p + n) = '\0';
